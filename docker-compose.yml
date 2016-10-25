@@ -1,0 +1,10 @@
+web:
+  restart: always
+  build: ./web
+  expose:
+    - "8085"
+  links:
+    - db:db
+  command: /usr/local/bin/gunicorn -w 1 --bind 0.0.0.0:80 server:server
+db:
+  image: mongo:3.0.2
